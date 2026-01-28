@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/psychoeducational-evaluation",
+      "destination": "/psychoeducational-evaluation/index.html"
+    },
+    {
+      "source": "/psychology-today",
+      "destination": "/psychology-today/index.html"
+    }
+  ]
+}
