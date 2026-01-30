@@ -1,28 +1,70 @@
+const DEFAULT_VERCEL_STATIC_URL = "https://YOUR-PROJECT.vercel.app";
+const DEFAULT_FIGMA_SPA_URL = "https://YOUR-FIGMA-SITE.figma.site";
+
+const VERCEL_PATHS = [
+  "/robots.txt",
+  "/sitemap.xml",
+  "/psychoeducational-evaluation",
+  "/psychology-today",
+];
+
+function normalizeOrigin(origin) {
+  return origin.replace(/\/+$/, "");
+}
+
+function shouldRouteToVercel(pathname) {
+  if (VERCEL_PATHS.includes(pathname)) return true;
+  return (
+    pathname.startsWith("/psychoeducational-evaluation/") ||
+    pathname.startsWith("/psychology-today/")
+  );
+}
+
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const url = new URL(request.url);
-    const path = url.pathname;
+    const pathname = url.pathname;
+    const cleanPath = pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
 
-    const VERCEL_ORIGIN = "https://YOUR-PROJECT.vercel.app";
-    const FIGMA_ORIGIN  = "https://YOUR-FIGMA-SITE.figma.site";
+    const vercelOrigin = normalizeOrigin(
+      env.VERCEL_STATIC_URL || DEFAULT_VERCEL_STATIC_URL
+    );
+    const figmaOrigin = normalizeOrigin(
+      env.FIGMA_SPA_URL || DEFAULT_FIGMA_SPA_URL
+    );
 
-    const cleanPath = path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path;
+    const routeToVercel = shouldRouteToVercel(cleanPath);
+    const targetOrigin = routeToVercel ? vercelOrigin : figmaOrigin;
 
-    const isVercel =
-      cleanPath === "/robots.txt" ||
-      cleanPath === "/sitemap.xml" ||
-      cleanPath === "/psychoeducational-evaluation" ||
-      cleanPath.startsWith("/psychoeducational-evaluation/") ||
-      cleanPath === "/psychology-today" ||
-      cleanPath.startsWith("/psychology-today/");
+    const targetUrl = new URL(targetOrigin + pathname + url.search);
 
-    if (isVercel) {
-      let targetPath = cleanPath;
-      if (cleanPath === "/psychoeducational-evaluation") targetPath = "/psychoeducational-evaluation/index.html";
-      if (cleanPath === "/psychology-today") targetPath = "/psychology-today/index.html";
-      return fetch(VERCEL_ORIGIN + targetPath + url.search, request);
+    try {
+      const response = await fetch(targetUrl, request);
+      if (response.ok) return response;
+
+      if (!routeToVercel) {
+        // If Figma returns a non-OK response, try Vercel as a safety net.
+        const fallbackUrl = new URL(vercelOrigin + pathname + url.search);
+        const fallbackResponse = await fetch(fallbackUrl, request);
+        return fallbackResponse.ok ? fallbackResponse : response;
+      }
+
+      return response;
+    } catch (error) {
+      if (routeToVercel) {
+        // If Vercel is down, optionally fall back to the SPA.
+        try {
+          const fallbackUrl = new URL(figmaOrigin + pathname + url.search);
+          const fallbackResponse = await fetch(fallbackUrl, request);
+          return fallbackResponse.ok
+            ? fallbackResponse
+            : new Response("Vercel routing failed.", { status: 502 });
+        } catch (fallbackError) {
+          return new Response("Routing failed.", { status: 502 });
+        }
+      }
+
+      return new Response("Routing failed.", { status: 502 });
     }
-
-    return fetch(FIGMA_ORIGIN + path + url.search, request);
-  }
+  },
 };
