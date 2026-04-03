@@ -1,2 +1,6 @@
 .DS_Store
 vercel-static/
+node_modules/
+.next/
+.env
+.env*.local

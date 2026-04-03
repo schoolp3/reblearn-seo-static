@@ -1,9 +1,17 @@
+// Edge router: send SEO/static paths to your Vercel deployment (now a Next.js app).
+// Expand VERCEL_PATHS if you add more server-rendered routes that must not hit Figma.
 const DEFAULT_VERCEL_STATIC_URL = "https://YOUR-PROJECT.vercel.app";
 const DEFAULT_FIGMA_SPA_URL = "https://YOUR-FIGMA-SITE.figma.site";
 
 const VERCEL_PATHS = [
+  "/",
   "/robots.txt",
   "/sitemap.xml",
+  "/services",
+  "/contact",
+  "/about",
+  "/district-contracting",
+  "/iee",
   "/psychoeducational-evaluation",
   "/psychology-today",
 ];
@@ -13,10 +21,12 @@ function normalizeOrigin(origin) {
 }
 
 function shouldRouteToVercel(pathname) {
+  if (pathname.startsWith("/api/")) return true;
   if (VERCEL_PATHS.includes(pathname)) return true;
   return (
     pathname.startsWith("/psychoeducational-evaluation/") ||
-    pathname.startsWith("/psychology-today/")
+    pathname.startsWith("/psychology-today/") ||
+    pathname.startsWith("/_next/")
   );
 }
 
