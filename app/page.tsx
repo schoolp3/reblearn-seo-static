@@ -122,14 +122,14 @@ export default function HomePage() {
             {/* Credential Badge */}
             <div className="flex justify-center mb-6">
               <div className="inline-flex items-center gap-2 rounded-full bg-slate-800/80 border border-slate-700 px-4 py-2 text-sm">
-                <Award className="h-4 w-4 text-primary" />
+                <Award className="h-4 w-4 text-blue-400" />
                 <span className="text-slate-300">Dennis Saller, LEP #3219 • Licensed Educational Psychologist</span>
               </div>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-balance">
-              Psychoeducational Evaluations & <span className="text-primary">IEEs</span>
+              Psychoeducational Evaluations & <span className="text-blue-400">IEEs</span>
             </h1>
 
             {/* Subheading */}
@@ -198,15 +198,15 @@ export default function HomePage() {
         </section>
 
         {/* Credentials Bar */}
-        <section className="border-b border-border bg-slate-50">
+        <section className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
             <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-12">
               {credentials.map((cred) => (
                 <div key={cred.label} className="flex items-center gap-3">
-                  <cred.icon className="h-5 w-5 text-muted-foreground" />
+                  <cred.icon className="h-5 w-5 text-slate-500" />
                   <div>
-                    <p className="text-xs text-muted-foreground">{cred.label}</p>
-                    <p className="font-semibold text-foreground">{cred.value}</p>
+                    <p className="text-xs text-slate-500">{cred.label}</p>
+                    <p className="font-semibold text-slate-900">{cred.value}</p>
                   </div>
                 </div>
               ))}
@@ -217,14 +217,14 @@ export default function HomePage() {
         {/* When a Bright Student Is Still Struggling */}
         <section className="py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-foreground lg:text-4xl text-balance">
+            <h2 className="text-3xl font-bold text-slate-900 lg:text-4xl text-balance">
               When a Bright Student Is Still Struggling
             </h2>
-            <div className="mt-8 text-left text-muted-foreground space-y-4">
+            <div className="mt-8 text-left text-slate-600 space-y-4">
               <p>
                 A strong school does not always produce a clear answer. Some students work hard, seem capable, and still struggle with reading, writing, attention, executive functioning, or overall academic performance. In those situations, families often need a thoughtful outside evaluation to understand what is really going on and what support makes sense next.
               </p>
-              <p className="text-center font-medium text-foreground">
+              <p className="text-center font-medium text-slate-900">
                 RebLearn helps families move from uncertainty to a clearer understanding and a more practical plan.
               </p>
             </div>
@@ -244,10 +244,10 @@ export default function HomePage() {
 
               {/* Content */}
               <div className="flex-1">
-                <h2 className="text-3xl font-bold text-foreground lg:text-4xl">
+                <h2 className="text-3xl font-bold text-slate-900 lg:text-4xl">
                   Meet Dennis Saller, LEP
                 </h2>
-                <div className="mt-6 space-y-4 text-muted-foreground">
+                <div className="mt-6 space-y-4 text-slate-600">
                   <p>
                     Dennis founded RebLearn after years of seeing valuable insights get buried in reports, meetings, and weak follow-through. He built RebLearn to provide clearer evaluations, sharper recommendations, and support that leads to real action.
                   </p>
@@ -258,7 +258,7 @@ export default function HomePage() {
                 <div className="mt-6">
                   <Link
                     href="/about"
-                    className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+                    className="inline-flex items-center gap-2 text-blue-600 font-medium hover:underline"
                   >
                     About Dennis
                     <ArrowRight className="h-4 w-4" />

@@ -38,7 +38,7 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -47,7 +47,7 @@ export function Header() {
               <path d="M8 8C8 8 12 4 16 4C20 4 24 8 24 8V24C24 24 20 28 16 28C12 28 8 24 8 24V8Z" fill="#0f172a" />
               <path d="M12 12L16 16L20 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="ml-2 text-xl font-bold text-foreground">RebLearn</span>
+            <span className="ml-2 text-xl font-bold text-slate-900">RebLearn</span>
           </div>
         </Link>
 
@@ -61,17 +61,17 @@ export function Header() {
                   onMouseEnter={() => setOpenDropdown(item.name)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                  <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
                     {item.name}
                     <ChevronDown className="h-4 w-4" />
                   </button>
                   {openDropdown === item.name && (
-                    <div className="absolute left-0 top-full z-50 w-64 rounded-lg border border-border bg-background p-2 shadow-lg">
+                    <div className="absolute left-0 top-full z-50 w-64 rounded-lg border border-slate-200 bg-white p-2 shadow-lg">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                          className="block rounded-md px-3 py-2 text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
                         >
                           {child.name}
                         </Link>
@@ -82,7 +82,7 @@ export function Header() {
               ) : (
                 <Link
                   href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -97,12 +97,12 @@ export function Header() {
             href="https://calendly.com/reblearn"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
           >
             <Calendar className="h-4 w-4" />
             Book a Call
           </Link>
-          <button className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground hover:bg-muted transition-colors">
+          <button className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition-colors">
             <Search className="h-4 w-4" />
           </button>
         </div>
@@ -110,7 +110,7 @@ export function Header() {
         {/* Mobile menu button */}
         <button
           type="button"
-          className="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground"
+          className="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg text-slate-600"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -119,14 +119,14 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-background">
+        <div className="lg:hidden border-t border-slate-200 bg-white">
           <div className="space-y-1 px-4 py-4">
             {navigation.map((item) => (
               <div key={item.name}>
                 {item.children ? (
                   <div>
                     <button
-                      className="flex w-full items-center justify-between py-2 text-base font-medium text-foreground"
+                      className="flex w-full items-center justify-between py-2 text-base font-medium text-slate-900"
                       onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
                     >
                       {item.name}
@@ -138,7 +138,7 @@ export function Header() {
                           <Link
                             key={child.name}
                             href={child.href}
-                            className="block py-2 text-sm text-muted-foreground hover:text-foreground"
+                            className="block py-2 text-sm text-slate-600 hover:text-slate-900"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {child.name}
@@ -150,7 +150,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block py-2 text-base font-medium text-foreground"
+                    className="block py-2 text-base font-medium text-slate-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -163,7 +163,7 @@ export function Header() {
                 href="https://calendly.com/reblearn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Calendar className="h-4 w-4" />

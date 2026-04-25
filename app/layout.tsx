@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} bg-background`}>
+    <html lang="en" className={`${inter.variable} bg-white`}>
       <body className="font-sans antialiased">
         <Script src="/ga-events.js" strategy="afterInteractive" />
         {children}
