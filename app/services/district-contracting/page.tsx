@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   description:
     "Psychoeducational evaluation services for California school districts. Experienced, reliable assessment capacity with timely case completion. Dennis Saller, LEP #3219.",
   alternates: { canonical: "/services/district-contracting" },
+  openGraph: {
+    title: "District Contracting | RebLearn",
+    description:
+      "Experienced psychoeducational evaluation capacity for California school districts. Reliable assessment services and timely case completion.",
+  },
 };
 
 export default function DistrictContractingPage() {

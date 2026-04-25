@@ -4,10 +4,16 @@ import { Hero } from "@/components/hero";
 import { CTASection } from "@/components/cta-section";
 
 export const metadata: Metadata = {
-  title: "Meet Dennis Saller, LEP | RebLearn",
+  title: "About Dennis Saller, LEP",
   description:
     "Dennis Saller is a California Licensed Educational Psychologist (LEP #3219) with 26+ years of experience and over 1,000 psychoeducational evaluations. Specializing in dyslexia, dysgraphia, ADHD, and executive functioning.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Dennis Saller, LEP",
+    description:
+      "California Licensed Educational Psychologist with 26+ years of experience. Over 1,000 evaluations for dyslexia, ADHD, dysgraphia, executive functioning, and learning differences.",
+    type: "profile",
+  },
 };
 
 export default function AboutPage() {

@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description:
     "RebLearn provides psychoeducational evaluations, independent evaluations, learning therapy, district contracting, and testing documentation for students and adults in California.",
   alternates: { canonical: "/services" },
+  openGraph: {
+    title: "RebLearn Services",
+    description:
+      "Psychoeducational evaluations, IEEs, learning therapy, district contracting, and testing accommodations for California families and schools.",
+  },
 };
 
 const services = [

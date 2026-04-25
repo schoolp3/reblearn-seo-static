@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description:
     "Articles about psychoeducational evaluations, learning differences, dyslexia, ADHD, executive functioning, and school advocacy from Dennis Saller, LEP.",
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "RebLearn Blog | Insights on Learning and Assessment",
+    description:
+      "Articles about psychoeducational evaluations, learning differences, and helping students succeed.",
+  },
 };
 
 export default function BlogPage() {

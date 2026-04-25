@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description:
     "Comprehensive psychoeducational evaluations for learning differences, ADHD, dyslexia, dysgraphia, and academic difficulties in California. Dennis Saller, LEP #3219.",
   alternates: { canonical: "/services/psychoeducational-evaluations" },
+  openGraph: {
+    title: "Psychoeducational Evaluations | RebLearn",
+    description:
+      "Comprehensive evaluations for learning, attention, and academic difficulties. Clear findings and practical recommendations for families and schools.",
+  },
 };
 
 const faqs = [

@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description:
     "Contact Dennis Saller, LEP for psychoeducational evaluations, IEE questions, accommodations testing, and district partnerships in California.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact RebLearn",
+    description:
+      "Get in touch with Dennis Saller, LEP for psychoeducational evaluations, IEE inquiries, and learning support in California.",
+  },
 };
 
 const faqs = [

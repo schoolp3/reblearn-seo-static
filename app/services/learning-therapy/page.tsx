@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   description:
     "Targeted learning therapy for reading, writing, spelling, and executive functioning. Research-based intervention grounded in evaluation findings. Dennis Saller, LEP #3219.",
   alternates: { canonical: "/services/learning-therapy" },
+  openGraph: {
+    title: "Learning Therapy | RebLearn",
+    description:
+      "Targeted, research-based support for reading, writing, spelling, and executive functioning. Grounded in evaluation findings.",
+  },
 };
 
 const faqs = [

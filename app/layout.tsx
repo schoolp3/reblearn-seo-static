@@ -14,20 +14,27 @@ const site = (
 export const metadata: Metadata = {
   metadataBase: new URL(site),
   title: {
-    default: "Psychoeducational Evaluations in California | Dennis Saller, LEP",
+    default: "RebLearn | Psychoeducational Evaluations, IEEs, and Learning Support",
     template: "%s | RebLearn",
   },
   description:
-    "Psychoeducational evaluations, learning therapy, and Independent Educational Evaluations (IEEs) in California. Dennis Saller, LEP #3219, helps families and schools understand why students struggle and what to do next.",
+    "RebLearn provides psychoeducational evaluations, Independent Educational Evaluations, learning therapy, and district contracting services for families and schools in California.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Psychoeducational Evaluations in California | Dennis Saller, LEP",
+    title: "RebLearn | Psychoeducational Evaluations and Learning Support",
     description:
-      "Psychoeducational evaluations, learning therapy, and IEEs for dyslexia, ADHD, dysgraphia, dyscalculia, executive functioning, and learning differences. Clear recommendations and practical next steps.",
+      "RebLearn provides psychoeducational evaluations, Independent Educational Evaluations, learning therapy, and district contracting services for families and schools in California.",
     type: "website",
     url: site,
+    siteName: "RebLearn",
+    locale: "en_US",
   },
-  twitter: { card: "summary" },
+  twitter: {
+    card: "summary",
+    title: "RebLearn | Psychoeducational Evaluations and Learning Support",
+    description:
+      "Psychoeducational evaluations, IEEs, and learning therapy for California families and schools.",
+  },
 };
 
 export default function RootLayout({

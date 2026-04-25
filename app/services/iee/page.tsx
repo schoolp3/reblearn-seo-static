@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   description:
     "Independent Educational Evaluations for California families. Thorough, experienced outside evaluation when you need an independent perspective. Dennis Saller, LEP #3219.",
   alternates: { canonical: "/services/iee" },
+  openGraph: {
+    title: "Independent Educational Evaluations (IEE) | RebLearn",
+    description:
+      "Thorough, experienced outside evaluations for families seeking an independent perspective on their child's educational needs.",
+  },
 };
 
 const faqs = [

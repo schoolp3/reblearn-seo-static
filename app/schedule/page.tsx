@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Schedule a Consultation | RebLearn",
+  title: "Schedule a Consultation",
   description:
     "Schedule a consultation with Dennis Saller, LEP to discuss psychoeducational evaluation, IEE, learning therapy, or other services.",
   alternates: { canonical: "/schedule" },
+  openGraph: {
+    title: "Schedule a Consultation | RebLearn",
+    description:
+      "Schedule a consultation with Dennis Saller, LEP to discuss your psychoeducational evaluation needs.",
+  },
 };
 
 export default function SchedulePage() {

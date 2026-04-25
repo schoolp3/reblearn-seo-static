@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description:
     "Psychoeducational evaluations for testing accommodations on SAT, ACT, GRE, MCAT, LSAT, Bar exam, and professional licensing exams. Dennis Saller, LEP #3219.",
   alternates: { canonical: "/services/testing-accommodations" },
+  openGraph: {
+    title: "Testing Accommodations | RebLearn",
+    description:
+      "Documentation for accommodations on SAT, ACT, GRE, MCAT, LSAT, Bar exam, and professional licensing exams.",
+  },
 };
 
 const faqs = [
