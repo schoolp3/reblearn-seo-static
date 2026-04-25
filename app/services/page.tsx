@@ -65,9 +65,9 @@ export default function ServicesPage() {
         }}
       />
 
-      <section className="services-section">
-        <div className="services-container">
-          <div className="services-grid">
+      <section className="py-16">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service) => (
               <ServiceCard
                 key={service.title}
@@ -81,45 +81,53 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="process-section">
-        <div className="process-container">
-          <h2>How We Work</h2>
-          <p className="process-intro">
+      <section className="bg-[var(--card)] border-t border-b border-[var(--border)] py-16">
+        <div className="max-w-[900px] mx-auto px-5">
+          <h2 className="text-3xl font-bold mb-4 text-center">How We Work</h2>
+          <p className="text-base text-[var(--muted)] text-center max-w-[700px] mx-auto mb-10 leading-relaxed">
             The first step is always a consultation to understand your situation and determine
-            whether our services are a good fit. We don't believe in one-size-fits-all
+            whether our services are a good fit. We don&apos;t believe in one-size-fits-all
             evaluations—each case is approached based on the specific questions that need to be
             answered.
           </p>
 
-          <div className="process-steps">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <h3>Consultation</h3>
-              <p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-[var(--brand)] text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                1
+              </div>
+              <h3 className="text-base font-semibold mb-2">Consultation</h3>
+              <p className="text-sm text-[var(--muted)] leading-relaxed">
                 We discuss your concerns, review relevant history, and determine whether an
                 evaluation or other service makes sense for your situation.
               </p>
             </div>
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <h3>Intake and Planning</h3>
-              <p>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-[var(--brand)] text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                2
+              </div>
+              <h3 className="text-base font-semibold mb-2">Intake and Planning</h3>
+              <p className="text-sm text-[var(--muted)] leading-relaxed">
                 We gather background information, review records, and design an evaluation approach
                 tailored to answer your specific questions.
               </p>
             </div>
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <h3>Assessment</h3>
-              <p>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-[var(--brand)] text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                3
+              </div>
+              <h3 className="text-base font-semibold mb-2">Assessment</h3>
+              <p className="text-sm text-[var(--muted)] leading-relaxed">
                 Testing is scheduled promptly and conducted in a comfortable, supportive
                 environment. Most evaluations span 1-2 sessions.
               </p>
             </div>
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <h3>Results and Recommendations</h3>
-              <p>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-[var(--brand)] text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                4
+              </div>
+              <h3 className="text-base font-semibold mb-2">Results and Recommendations</h3>
+              <p className="text-sm text-[var(--muted)] leading-relaxed">
                 You receive a clear written report and a feedback meeting to discuss findings,
                 answer questions, and plan next steps.
               </p>
@@ -140,90 +148,6 @@ export default function ServicesPage() {
           href: "/contact",
         }}
       />
-
-      <style jsx>{`
-        .services-section {
-          padding: 60px 0;
-        }
-        .services-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-        }
-        .process-section {
-          background: var(--card);
-          border-top: 1px solid var(--border);
-          border-bottom: 1px solid var(--border);
-          padding: 60px 0;
-        }
-        .process-container {
-          max-width: 900px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .process-section h2 {
-          font-size: 28px;
-          margin: 0 0 16px;
-          text-align: center;
-        }
-        .process-intro {
-          font-size: 16px;
-          color: var(--muted);
-          text-align: center;
-          max-width: 700px;
-          margin: 0 auto 40px;
-          line-height: 1.7;
-        }
-        .process-steps {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-        }
-        .process-step {
-          text-align: center;
-        }
-        .step-number {
-          width: 48px;
-          height: 48px;
-          background: var(--brand);
-          color: #fff;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 20px;
-          font-weight: 700;
-          margin: 0 auto 16px;
-        }
-        .process-step h3 {
-          font-size: 16px;
-          margin: 0 0 8px;
-        }
-        .process-step p {
-          font-size: 14px;
-          color: var(--muted);
-          line-height: 1.6;
-          margin: 0;
-        }
-        @media (max-width: 800px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-          .process-steps {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 500px) {
-          .process-steps {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </>
   );
 }

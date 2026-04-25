@@ -18,73 +18,21 @@ export function BlogCard({
   readTime,
 }: BlogCardProps) {
   return (
-    <article className="blog-card">
-      <Link href={`/blog/${slug}`} className="blog-card-link">
-        <div className="blog-card-meta">
-          {category && <span className="blog-category">{category}</span>}
-          <span className="blog-date">{date}</span>
-          {readTime && <span className="blog-read-time">{readTime}</span>}
+    <article className="bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+      <Link href={`/blog/${slug}`} className="block p-6 no-underline text-inherit">
+        <div className="flex gap-3 items-center mb-3 text-xs text-[var(--muted)]">
+          {category && (
+            <span className="bg-[var(--brand)] text-white px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider">
+              {category}
+            </span>
+          )}
+          <span>{date}</span>
+          {readTime && <span>{readTime}</span>}
         </div>
-        <h3 className="blog-card-title">{title}</h3>
-        <p className="blog-card-excerpt">{excerpt}</p>
-        <span className="blog-card-cta">Read more &rarr;</span>
+        <h3 className="text-xl font-semibold mb-2.5 text-[var(--text)] leading-tight">{title}</h3>
+        <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">{excerpt}</p>
+        <span className="text-sm font-medium text-[var(--brand)]">Read more &rarr;</span>
       </Link>
-
-      <style jsx>{`
-        .blog-card {
-          background: var(--card);
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          overflow: hidden;
-          transition: box-shadow 0.2s, transform 0.2s;
-        }
-        .blog-card:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-          transform: translateY(-2px);
-        }
-        .blog-card-link {
-          display: block;
-          padding: 24px;
-          text-decoration: none;
-          color: inherit;
-        }
-        .blog-card-meta {
-          display: flex;
-          gap: 12px;
-          align-items: center;
-          margin-bottom: 12px;
-          font-size: 13px;
-          color: var(--muted);
-        }
-        .blog-category {
-          background: var(--brand);
-          color: #fff;
-          padding: 4px 10px;
-          border-radius: 999px;
-          font-size: 11px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-        .blog-card-title {
-          font-size: 20px;
-          font-weight: 600;
-          margin: 0 0 10px;
-          color: var(--text);
-          line-height: 1.3;
-        }
-        .blog-card-excerpt {
-          font-size: 14px;
-          color: var(--muted);
-          line-height: 1.6;
-          margin: 0 0 16px;
-        }
-        .blog-card-cta {
-          font-size: 14px;
-          font-weight: 500;
-          color: var(--brand);
-        }
-      `}</style>
     </article>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Hero } from "@/components/hero";
 import { ServiceCard } from "@/components/service-card";
 import { CTASection } from "@/components/cta-section";
@@ -123,16 +124,16 @@ export default function HomePage() {
         ]}
       />
 
-      <section className="services-section">
-        <div className="section-container">
-          <h2 className="section-title">Services</h2>
-          <p className="section-subtitle">
+      <section className="py-16">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <h2 className="text-3xl font-bold mb-3">Services</h2>
+          <p className="text-base text-[var(--muted)] max-w-[640px] leading-relaxed mb-8">
             Evaluation-focused support for families, schools, and districts. Whether you need
             answers about learning difficulties, accommodations documentation, or district
             assessment capacity, we can help.
           </p>
 
-          <div className="services-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((service) => (
               <ServiceCard
                 key={service.title}
@@ -146,24 +147,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="about-strip">
-        <div className="strip-container">
-          <div className="about-content">
-            <div className="headshot" aria-hidden="true" />
-            <div className="about-text">
-              <h2>Meet Dennis Saller, LEP</h2>
-              <p>
+      <section className="bg-[var(--card)] border-t border-b border-[var(--border)] py-12">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="w-32 h-32 rounded-full overflow-hidden border-3 border-white shadow-lg flex-shrink-0 mx-auto md:mx-0">
+              <Image
+                src="/images/dennis-saller.jpg"
+                alt="Dennis Saller, Licensed Educational Psychologist"
+                width={128}
+                height={128}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl font-bold mb-4">Meet Dennis Saller, LEP</h2>
+              <p className="text-[15px] text-[var(--muted)] leading-relaxed mb-3">
                 Dennis Saller is a California Licensed Educational Psychologist with over 26 years
                 of experience conducting psychoeducational evaluations. He has completed more than
                 1,000 evaluations for students with learning differences, attention difficulties,
                 reading and writing challenges, and other school-related concerns.
               </p>
-              <p>
+              <p className="text-[15px] text-[var(--muted)] leading-relaxed mb-5">
                 Through RebLearn, Dennis helps families understand what is happening with their
-                child's learning and provides clear, practical recommendations—not vague labels or
+                child&apos;s learning and provides clear, practical recommendations—not vague labels or
                 generic guidance.
               </p>
-              <div className="about-cta">
+              <div className="flex justify-center md:justify-start">
                 <Link href="/about" className="btn secondary">
                   About Dennis
                 </Link>
@@ -188,90 +197,6 @@ export default function HomePage() {
       />
 
       <FAQSection items={faqs} />
-
-      <style jsx>{`
-        .services-section {
-          padding: 60px 0;
-        }
-        .section-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .section-title {
-          font-size: 32px;
-          margin: 0 0 12px;
-        }
-        .section-subtitle {
-          font-size: 17px;
-          color: var(--muted);
-          max-width: 640px;
-          line-height: 1.6;
-          margin: 0 0 32px;
-        }
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-        }
-        .about-strip {
-          background: var(--card);
-          border-top: 1px solid var(--border);
-          border-bottom: 1px solid var(--border);
-          padding: 48px 0;
-        }
-        .strip-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .about-content {
-          display: flex;
-          gap: 32px;
-          align-items: flex-start;
-        }
-        .headshot {
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-          border: 3px solid #fff;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-          flex-shrink: 0;
-        }
-        .about-text h2 {
-          font-size: 24px;
-          margin: 0 0 16px;
-        }
-        .about-text p {
-          font-size: 15px;
-          color: var(--muted);
-          line-height: 1.7;
-          margin: 0 0 12px;
-        }
-        .about-cta {
-          margin-top: 20px;
-        }
-        @media (max-width: 900px) {
-          .services-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 600px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-          .about-content {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-          .about-cta {
-            display: flex;
-            justify-content: center;
-          }
-        }
-      `}</style>
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { MobileNav } from "./mobile-nav";
 
@@ -28,29 +29,39 @@ export function Header() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="header-container">
-          <Link href="/" className="logo">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[var(--border)]">
+        <div className="max-w-[1100px] mx-auto px-5 py-3.5 flex items-center justify-between gap-6">
+          <Link href="/" className="flex items-center gap-2 text-[22px] font-bold text-[var(--text)] no-underline hover:no-underline">
+            <Image
+              src="/images/reblearn-logo.png"
+              alt="RebLearn"
+              width={36}
+              height={36}
+              className="w-9 h-9"
+            />
             RebLearn
           </Link>
 
-          <nav className="desktop-nav">
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) =>
               item.children ? (
                 <div
                   key={item.label}
-                  className="nav-dropdown"
+                  className="relative"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
                 >
-                  <Link href={item.href} className="nav-link">
+                  <Link
+                    href={item.href}
+                    className="flex items-center px-3.5 py-2 text-[15px] font-medium text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
+                  >
                     {item.label}
                     <svg
                       width="12"
                       height="12"
                       viewBox="0 0 12 12"
                       fill="none"
-                      style={{ marginLeft: 4 }}
+                      className="ml-1"
                     >
                       <path
                         d="M3 4.5L6 7.5L9 4.5"
@@ -62,9 +73,13 @@ export function Header() {
                     </svg>
                   </Link>
                   {servicesOpen && (
-                    <div className="dropdown-menu">
+                    <div className="absolute top-full left-0 min-w-[280px] p-2 bg-white border border-[var(--border)] rounded-xl shadow-lg">
                       {item.children.map((child) => (
-                        <Link key={child.href} href={child.href} className="dropdown-item">
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-3.5 py-2.5 text-sm text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
+                        >
                           {child.label}
                         </Link>
                       ))}
@@ -72,21 +87,25 @@ export function Header() {
                   )}
                 </div>
               ) : (
-                <Link key={item.label} href={item.href} className="nav-link">
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="px-3.5 py-2 text-[15px] font-medium text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
+                >
                   {item.label}
                 </Link>
               )
             )}
           </nav>
 
-          <div className="header-cta">
-            <Link href="/schedule" className="btn primary">
+          <div className="hidden lg:flex items-center">
+            <Link href="/schedule" className="btn primary text-sm px-4 py-2.5">
               Schedule Consultation
             </Link>
           </div>
 
           <button
-            className="mobile-menu-btn"
+            className="lg:hidden bg-transparent border-0 p-2 cursor-pointer text-[var(--text)]"
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
@@ -107,107 +126,6 @@ export function Header() {
         onClose={() => setMobileOpen(false)}
         items={navItems}
       />
-
-      <style jsx>{`
-        .site-header {
-          position: sticky;
-          top: 0;
-          z-index: 100;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(8px);
-          border-bottom: 1px solid var(--border);
-        }
-        .header-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 14px 20px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 24px;
-        }
-        .logo {
-          font-size: 22px;
-          font-weight: 700;
-          color: var(--text);
-          text-decoration: none;
-        }
-        .logo:hover {
-          text-decoration: none;
-        }
-        .desktop-nav {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .nav-link {
-          display: flex;
-          align-items: center;
-          padding: 8px 14px;
-          font-size: 15px;
-          font-weight: 500;
-          color: var(--text);
-          text-decoration: none;
-          border-radius: 8px;
-          transition: background 0.15s;
-        }
-        .nav-link:hover {
-          background: var(--card);
-          text-decoration: none;
-        }
-        .nav-dropdown {
-          position: relative;
-        }
-        .dropdown-menu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          min-width: 280px;
-          padding: 8px;
-          background: #fff;
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-        .dropdown-item {
-          display: block;
-          padding: 10px 14px;
-          font-size: 14px;
-          color: var(--text);
-          text-decoration: none;
-          border-radius: 8px;
-          transition: background 0.15s;
-        }
-        .dropdown-item:hover {
-          background: var(--card);
-          text-decoration: none;
-        }
-        .header-cta {
-          display: flex;
-          align-items: center;
-        }
-        .header-cta .btn {
-          padding: 10px 18px;
-          font-size: 14px;
-        }
-        .mobile-menu-btn {
-          display: none;
-          background: none;
-          border: none;
-          padding: 8px;
-          cursor: pointer;
-          color: var(--text);
-        }
-        @media (max-width: 900px) {
-          .desktop-nav,
-          .header-cta {
-            display: none;
-          }
-          .mobile-menu-btn {
-            display: block;
-          }
-        }
-      `}</style>
     </>
   );
 }

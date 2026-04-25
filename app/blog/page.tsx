@@ -23,9 +23,9 @@ export default function BlogPage() {
         centered
       />
 
-      <section className="blog-section">
-        <div className="blog-container">
-          <div className="blog-grid">
+      <section className="py-16">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.map((post) => (
               <BlogCard
                 key={post.slug}
@@ -53,27 +53,6 @@ export default function BlogPage() {
           href: "/services",
         }}
       />
-
-      <style jsx>{`
-        .blog-section {
-          padding: 60px 0;
-        }
-        .blog-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .blog-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-        }
-        @media (max-width: 700px) {
-          .blog-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </>
   );
 }

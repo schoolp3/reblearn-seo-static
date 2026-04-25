@@ -44,77 +44,58 @@ export default function ContactPage() {
         centered
       />
 
-      <section className="contact-section">
-        <div className="contact-container">
-          <div className="contact-grid">
-            <div className="contact-info">
-              <h2>Contact Information</h2>
+      <section className="py-16">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div>
+              <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
 
-              <div className="contact-card">
-                <h3>Dennis Saller, LEP #3219</h3>
-                <p>Licensed Educational Psychologist</p>
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 mb-8">
+                <h3 className="text-lg font-semibold mb-1">Dennis Saller, LEP #3219</h3>
+                <p className="text-sm text-[var(--muted)] mb-5">Licensed Educational Psychologist</p>
 
-                <div className="contact-details">
-                  <div className="contact-item">
-                    <span className="contact-label">Phone/Text</span>
-                    <a href="tel:+16692486602" className="contact-value">
-                      669-248-6602
-                    </a>
+                <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Phone/Text</span>
+                    <a href="tel:+16692486602" className="text-base text-[var(--brand)]">669-248-6602</a>
                   </div>
-
-                  <div className="contact-item">
-                    <span className="contact-label">Email</span>
-                    <a href="mailto:dennis@reblearn.com" className="contact-value">
-                      dennis@reblearn.com
-                    </a>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Email</span>
+                    <a href="mailto:dennis@reblearn.com" className="text-base text-[var(--brand)]">dennis@reblearn.com</a>
                   </div>
-
-                  <div className="contact-item">
-                    <span className="contact-label">Website</span>
-                    <span className="contact-value">RebLearn.com</span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Website</span>
+                    <span className="text-base text-[var(--text)]">RebLearn.com</span>
                   </div>
-
-                  <div className="contact-item">
-                    <span className="contact-label">Service Area</span>
-                    <span className="contact-value">California Statewide</span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Service Area</span>
+                    <span className="text-base text-[var(--text)]">California Statewide</span>
                   </div>
                 </div>
               </div>
 
-              <div className="quick-links">
-                <h3>Quick Inquiries</h3>
-                <p>For specific service inquiries, use these direct links:</p>
-                <div className="quick-link-buttons">
-                  <a
-                    href="mailto:dennis@reblearn.com?subject=Consultation%20Request"
-                    className="btn secondary"
-                  >
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Quick Inquiries</h3>
+                <p className="text-sm text-[var(--muted)] mb-4">For specific service inquiries, use these direct links:</p>
+                <div className="flex flex-col gap-2.5">
+                  <a href="mailto:dennis@reblearn.com?subject=Consultation%20Request" className="btn secondary text-sm justify-center">
                     General Consultation
                   </a>
-                  <a
-                    href="mailto:dennis@reblearn.com?subject=IEE%20Inquiry"
-                    className="btn secondary"
-                  >
+                  <a href="mailto:dennis@reblearn.com?subject=IEE%20Inquiry" className="btn secondary text-sm justify-center">
                     IEE Inquiry
                   </a>
-                  <a
-                    href="mailto:dennis@reblearn.com?subject=District%20Contracting"
-                    className="btn secondary"
-                  >
+                  <a href="mailto:dennis@reblearn.com?subject=District%20Contracting" className="btn secondary text-sm justify-center">
                     District Contracting
                   </a>
-                  <a
-                    href="mailto:dennis@reblearn.com?subject=Accommodations%20Testing"
-                    className="btn secondary"
-                  >
+                  <a href="mailto:dennis@reblearn.com?subject=Accommodations%20Testing" className="btn secondary text-sm justify-center">
                     Accommodations Testing
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="contact-form-wrapper">
-              <h2>Send a Message</h2>
+            <div>
+              <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
               <ContactForm subject="Website Contact" />
             </div>
           </div>
@@ -123,11 +104,11 @@ export default function ContactPage() {
 
       <FAQSection title="Contact FAQs" items={faqs} />
 
-      <section className="cta-section">
-        <div className="cta-container">
-          <h2>Ready to schedule a consultation?</h2>
-          <p>
-            If you're ready to discuss your situation and determine next steps, head to the
+      <section className="bg-[var(--card)] border-t border-[var(--border)] py-12 text-center">
+        <div className="max-w-[600px] mx-auto px-5">
+          <h2 className="text-2xl font-bold mb-3">Ready to schedule a consultation?</h2>
+          <p className="text-base text-[var(--muted)] mb-6">
+            If you&apos;re ready to discuss your situation and determine next steps, head to the
             scheduling page.
           </p>
           <Link href="/schedule" className="btn primary">
@@ -135,111 +116,6 @@ export default function ContactPage() {
           </Link>
         </div>
       </section>
-
-      <style jsx>{`
-        .contact-section {
-          padding: 60px 0;
-        }
-        .contact-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .contact-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 60px;
-          align-items: start;
-        }
-        .contact-info h2,
-        .contact-form-wrapper h2 {
-          font-size: 24px;
-          margin: 0 0 24px;
-        }
-        .contact-card {
-          background: var(--card);
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          padding: 24px;
-          margin-bottom: 32px;
-        }
-        .contact-card h3 {
-          font-size: 18px;
-          margin: 0 0 4px;
-        }
-        .contact-card > p {
-          font-size: 14px;
-          color: var(--muted);
-          margin: 0 0 20px;
-        }
-        .contact-details {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-        .contact-item {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-        .contact-label {
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: var(--muted);
-        }
-        .contact-value {
-          font-size: 16px;
-          color: var(--text);
-        }
-        a.contact-value {
-          color: var(--brand);
-        }
-        .quick-links h3 {
-          font-size: 18px;
-          margin: 0 0 8px;
-        }
-        .quick-links > p {
-          font-size: 14px;
-          color: var(--muted);
-          margin: 0 0 16px;
-        }
-        .quick-link-buttons {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .quick-link-buttons .btn {
-          justify-content: center;
-          font-size: 14px;
-        }
-        .cta-section {
-          background: var(--card);
-          border-top: 1px solid var(--border);
-          padding: 48px 20px;
-          text-align: center;
-        }
-        .cta-container {
-          max-width: 600px;
-          margin: 0 auto;
-        }
-        .cta-section h2 {
-          font-size: 24px;
-          margin: 0 0 12px;
-        }
-        .cta-section p {
-          font-size: 16px;
-          color: var(--muted);
-          margin: 0 0 24px;
-        }
-        @media (max-width: 800px) {
-          .contact-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-        }
-      `}</style>
     </>
   );
 }

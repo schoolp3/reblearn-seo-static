@@ -1,67 +1,103 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="footer-container">
-        <div className="footer-main">
-          <div className="footer-brand">
-            <Link href="/" className="footer-logo">
+    <footer className="bg-[var(--card)] border-t border-[var(--border)] mt-16">
+      <div className="max-w-[1100px] mx-auto px-5 py-12 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_2fr] gap-12">
+          <div>
+            <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-[var(--text)] no-underline">
+              <Image
+                src="/images/reblearn-logo.png"
+                alt="RebLearn"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
               RebLearn
             </Link>
-            <p className="footer-tagline">
+            <p className="mt-3 text-sm text-[var(--muted)] max-w-[280px] leading-relaxed">
               Psychoeducational evaluations and learning support for California families and schools.
             </p>
           </div>
 
-          <div className="footer-links">
-            <div className="footer-column">
-              <h4>Services</h4>
-              <ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div>
+              <h4 className="text-sm font-semibold text-[var(--text)] mb-4 uppercase tracking-wider">
+                Services
+              </h4>
+              <ul className="space-y-2.5">
                 <li>
-                  <Link href="/services/psychoeducational-evaluations">Psychoeducational Evaluations</Link>
+                  <Link href="/services/psychoeducational-evaluations" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Psychoeducational Evaluations
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/iee">Independent Evaluations (IEE)</Link>
+                  <Link href="/services/iee" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Independent Evaluations (IEE)
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/learning-therapy">Learning Therapy</Link>
+                  <Link href="/services/learning-therapy" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Learning Therapy
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/testing-accommodations">Testing Accommodations</Link>
+                  <Link href="/services/testing-accommodations" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Testing Accommodations
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/district-contracting">District Contracting</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="footer-column">
-              <h4>Company</h4>
-              <ul>
-                <li>
-                  <Link href="/about">About</Link>
-                </li>
-                <li>
-                  <Link href="/blog">Blog</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Contact</Link>
-                </li>
-                <li>
-                  <Link href="/schedule">Schedule Consultation</Link>
+                  <Link href="/services/district-contracting" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    District Contracting
+                  </Link>
                 </li>
               </ul>
             </div>
 
-            <div className="footer-column">
-              <h4>Contact</h4>
-              <ul>
+            <div>
+              <h4 className="text-sm font-semibold text-[var(--text)] mb-4 uppercase tracking-wider">
+                Company
+              </h4>
+              <ul className="space-y-2.5">
                 <li>
-                  <a href="tel:+16692486602">669-248-6602</a>
+                  <Link href="/about" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    About
+                  </Link>
                 </li>
                 <li>
-                  <a href="mailto:dennis@reblearn.com">dennis@reblearn.com</a>
+                  <Link href="/blog" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/schedule" className="text-sm text-[var(--muted)] hover:text-[var(--brand)] transition-colors no-underline">
+                    Schedule Consultation
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-[var(--text)] mb-4 uppercase tracking-wider">
+                Contact
+              </h4>
+              <ul className="space-y-2.5 text-sm text-[var(--muted)]">
+                <li>
+                  <a href="tel:+16692486602" className="hover:text-[var(--brand)] transition-colors no-underline">
+                    669-248-6602
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:dennis@reblearn.com" className="hover:text-[var(--brand)] transition-colors no-underline">
+                    dennis@reblearn.com
+                  </a>
                 </li>
                 <li>Dennis Saller, LEP #3219</li>
                 <li>California</li>
@@ -70,96 +106,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} RebLearn. All rights reserved.</p>
+        <div className="mt-10 pt-5 border-t border-[var(--border)]">
+          <p className="text-xs text-[var(--muted)]">
+            &copy; {new Date().getFullYear()} RebLearn. All rights reserved.
+          </p>
         </div>
       </div>
-
-      <style jsx>{`
-        .site-footer {
-          background: var(--card);
-          border-top: 1px solid var(--border);
-          margin-top: 60px;
-        }
-        .footer-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 48px 20px 24px;
-        }
-        .footer-main {
-          display: grid;
-          grid-template-columns: 1.5fr 2fr;
-          gap: 48px;
-        }
-        .footer-logo {
-          font-size: 24px;
-          font-weight: 700;
-          color: var(--text);
-          text-decoration: none;
-        }
-        .footer-tagline {
-          margin-top: 12px;
-          font-size: 14px;
-          color: var(--muted);
-          max-width: 280px;
-          line-height: 1.6;
-        }
-        .footer-links {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
-        }
-        .footer-column h4 {
-          font-size: 14px;
-          font-weight: 600;
-          color: var(--text);
-          margin: 0 0 16px;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-        .footer-column ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
-        .footer-column li {
-          margin-bottom: 10px;
-          font-size: 14px;
-          color: var(--muted);
-        }
-        .footer-column a {
-          color: var(--muted);
-          text-decoration: none;
-          transition: color 0.15s;
-        }
-        .footer-column a:hover {
-          color: var(--brand);
-        }
-        .footer-bottom {
-          margin-top: 40px;
-          padding-top: 20px;
-          border-top: 1px solid var(--border);
-        }
-        .footer-bottom p {
-          font-size: 13px;
-          color: var(--muted);
-          margin: 0;
-        }
-        @media (max-width: 768px) {
-          .footer-main {
-            grid-template-columns: 1fr;
-            gap: 32px;
-          }
-          .footer-links {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 480px) {
-          .footer-links {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </footer>
   );
 }

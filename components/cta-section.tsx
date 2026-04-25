@@ -21,34 +21,68 @@ export function CTASection({
   secondaryButton,
   variant = "default",
 }: CTASectionProps) {
-  const variantClass = `cta-${variant}`;
+  const sectionClasses = {
+    default: "bg-[var(--card)] border border-[var(--border)]",
+    dark: "bg-gradient-to-br from-[#1e3a5f] to-[#0f172a] text-white",
+    subtle: "bg-transparent",
+  };
+
+  const headlineClasses = {
+    default: "text-[var(--text)]",
+    dark: "text-white",
+    subtle: "text-[var(--text)]",
+  };
+
+  const subtextClasses = {
+    default: "text-[var(--muted)]",
+    dark: "text-white/70",
+    subtle: "text-[var(--muted)]",
+  };
 
   return (
-    <section className={`cta-section ${variantClass}`}>
-      <div className="cta-container">
-        <h2 className="cta-headline">{headline}</h2>
-        {subtext && <p className="cta-subtext">{subtext}</p>}
+    <section className={`py-12 px-5 text-center rounded-2xl my-10 mx-auto max-w-[1100px] ${sectionClasses[variant]}`}>
+      <div className="max-w-[600px] mx-auto">
+        <h2 className={`text-[clamp(24px,4vw,32px)] mb-3 leading-tight ${headlineClasses[variant]}`}>
+          {headline}
+        </h2>
+        {subtext && (
+          <p className={`text-base mb-6 leading-relaxed ${subtextClasses[variant]}`}>
+            {subtext}
+          </p>
+        )}
 
         {(primaryButton || secondaryButton) && (
-          <div className="cta-buttons">
+          <div className="flex gap-3 justify-center flex-wrap">
             {primaryButton && (
               primaryButton.href.startsWith("mailto:") || primaryButton.href.startsWith("tel:") ? (
-                <a className={`btn ${variant === "dark" ? "primary-light" : "primary"}`} href={primaryButton.href}>
+                <a
+                  className={variant === "dark" ? "btn bg-white text-[#0f172a] hover:bg-gray-100" : "btn primary"}
+                  href={primaryButton.href}
+                >
                   {primaryButton.text}
                 </a>
               ) : (
-                <Link className={`btn ${variant === "dark" ? "primary-light" : "primary"}`} href={primaryButton.href}>
+                <Link
+                  className={variant === "dark" ? "btn bg-white text-[#0f172a] hover:bg-gray-100" : "btn primary"}
+                  href={primaryButton.href}
+                >
                   {primaryButton.text}
                 </Link>
               )
             )}
             {secondaryButton && (
               secondaryButton.href.startsWith("mailto:") || secondaryButton.href.startsWith("tel:") ? (
-                <a className={`btn ${variant === "dark" ? "secondary-light" : "secondary"}`} href={secondaryButton.href}>
+                <a
+                  className={variant === "dark" ? "btn bg-transparent border-white/30 text-white hover:bg-white/10" : "btn secondary"}
+                  href={secondaryButton.href}
+                >
                   {secondaryButton.text}
                 </a>
               ) : (
-                <Link className={`btn ${variant === "dark" ? "secondary-light" : "secondary"}`} href={secondaryButton.href}>
+                <Link
+                  className={variant === "dark" ? "btn bg-transparent border-white/30 text-white hover:bg-white/10" : "btn secondary"}
+                  href={secondaryButton.href}
+                >
                   {secondaryButton.text}
                 </Link>
               )
@@ -56,67 +90,6 @@ export function CTASection({
           </div>
         )}
       </div>
-
-      <style jsx>{`
-        .cta-section {
-          padding: 48px 20px;
-          text-align: center;
-          border-radius: 20px;
-          margin: 40px auto;
-          max-width: 1100px;
-        }
-        .cta-default {
-          background: var(--card);
-          border: 1px solid var(--border);
-        }
-        .cta-dark {
-          background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
-          color: #fff;
-        }
-        .cta-subtle {
-          background: transparent;
-          border: none;
-        }
-        .cta-container {
-          max-width: 600px;
-          margin: 0 auto;
-        }
-        .cta-headline {
-          font-size: clamp(24px, 4vw, 32px);
-          margin: 0 0 12px;
-          line-height: 1.2;
-        }
-        .cta-dark .cta-headline {
-          color: #fff;
-        }
-        .cta-subtext {
-          font-size: 16px;
-          color: var(--muted);
-          margin: 0 0 24px;
-          line-height: 1.6;
-        }
-        .cta-dark .cta-subtext {
-          color: rgba(255, 255, 255, 0.7);
-        }
-        .cta-buttons {
-          display: flex;
-          gap: 12px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        :global(.btn.primary-light) {
-          background: #fff;
-          color: #0f172a;
-        }
-        :global(.btn.secondary-light) {
-          background: transparent;
-          border-color: rgba(255, 255, 255, 0.3);
-          color: #fff;
-        }
-        :global(.btn.secondary-light:hover) {
-          background: rgba(255, 255, 255, 0.1);
-        }
-      `}</style>
     </section>
   );
 }
