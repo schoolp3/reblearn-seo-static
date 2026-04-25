@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/hero";
-import { ServiceCard } from "@/components/service-card";
 import { CTASection } from "@/components/cta-section";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Services for Families, Students, and School Districts",
   description:
-    "Psychoeducational evaluations, Independent Educational Evaluations (IEEs), learning therapy, testing accommodations, and district contracting with Dennis Saller, LEP.",
+    "RebLearn provides psychoeducational evaluations, independent evaluations, learning therapy, district contracting, and testing documentation for students and adults in California.",
   alternates: { canonical: "/services" },
 };
 
@@ -14,37 +14,50 @@ const services = [
   {
     title: "Psychoeducational Evaluations",
     description:
-      "Comprehensive evaluations to clarify learning, attention, and academic difficulties. We assess cognitive abilities, academic skills, and processing to understand why a student is struggling and provide specific recommendations for support.",
+      "Comprehensive evaluations for learning, attention, academic, cognitive processing, social-emotional, and school-related concerns.",
+    whoItHelps: "Students struggling in school, families seeking answers about learning differences, and parents who want a clear understanding of their child's needs.",
     href: "/services/psychoeducational-evaluations",
     linkText: "Learn about evaluations",
   },
   {
-    title: "Independent Educational Evaluations (IEE)",
+    title: "Independent Educational Evaluations",
     description:
-      "When families need an outside perspective, an IEE provides thorough, independent assessment. We work with families navigating the IEE process and provide clear, defensible evaluation reports.",
+      "Outside evaluations for families seeking a clearer second opinion or a more detailed explanation of a student's learning needs.",
+    whoItHelps: "Families who disagree with a school district evaluation, want an independent perspective, or need thorough documentation for an IEP meeting.",
     href: "/services/iee",
     linkText: "IEE overview",
   },
   {
     title: "Learning Therapy",
     description:
-      "Targeted, research-based support for reading, writing, spelling, and executive functioning. Our approach is grounded in evaluation findings and uses structured, evidence-based methods to address specific weaknesses.",
+      "Targeted reading, spelling, writing, executive functioning, and academic support based on assessment and error patterns.",
+    whoItHelps: "Students with dyslexia, dysgraphia, ADHD, or other learning differences who need structured, evidence-based intervention.",
     href: "/services/learning-therapy",
     linkText: "Explore learning therapy",
   },
   {
+    title: "District Contracting",
+    description:
+      "Assessment support for districts needing overflow evaluations, IEEs, ERMHS, FBA/BIP, academic testing, and specialized learning disability evaluations.",
+    whoItHelps: "School districts facing evaluation backlogs, needing specialized expertise, or seeking a reliable contract assessor.",
+    href: "/services/district-contracting",
+    linkText: "District services",
+  },
+  {
     title: "Testing Accommodations",
     description:
-      "Documentation for accommodations on standardized tests and professional exams. We provide thorough evaluation and clear documentation for SAT, ACT, GRE, MCAT, LSAT, Bar exam, and other testing situations.",
+      "Documentation for students and adults seeking accommodations on standardized, college, graduate, professional, or certification exams.",
+    whoItHelps: "High school students (SAT, ACT), college students, graduate school applicants (GRE, MCAT, LSAT), and professionals (Bar, CPA, medical boards).",
     href: "/services/testing-accommodations",
     linkText: "Learn about accommodations",
   },
   {
-    title: "District Contracting",
+    title: "Dyslexia, Dysgraphia, and Dyscalculia Evaluations",
     description:
-      "Experienced psychoeducational evaluation capacity for school districts. We provide reliable, timely assessment services with clear reporting and defensible findings for districts needing additional evaluation support.",
-    href: "/services/district-contracting",
-    linkText: "District services",
+      "Specialized evaluations that examine written language, reading, spelling, writing, math, processing, and instructional needs.",
+    whoItHelps: "Students and adults who suspect a specific learning disability in reading, writing, or math and need a definitive answer and clear recommendations.",
+    href: "/services/psychoeducational-evaluations",
+    linkText: "Specialized evaluation info",
   },
 ];
 
@@ -53,8 +66,8 @@ export default function ServicesPage() {
     <>
       <Hero
         kicker="RebLearn Services"
-        title="Evaluation and support to understand learning differences"
-        subtitle="Whether you need answers about why your child is struggling, documentation for accommodations, or evaluation capacity for your district, we can help. Each service starts with understanding your specific situation."
+        title="Services for Families, Students, and School Districts"
+        subtitle="RebLearn provides comprehensive psychoeducational evaluations, independent evaluations, learning therapy, district contracting, and testing documentation for students and adults."
         primaryCta={{
           text: "Schedule Consultation",
           href: "/schedule",
@@ -67,15 +80,37 @@ export default function ServicesPage() {
 
       <section className="py-16">
         <div className="max-w-[1100px] mx-auto px-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-              <ServiceCard
+              <article
                 key={service.title}
-                title={service.title}
-                description={service.description}
-                href={service.href}
-                linkText={service.linkText}
-              />
+                className="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 flex flex-col hover:shadow-md transition-shadow"
+              >
+                <h3 className="text-xl font-bold mb-3 text-[var(--text)]">
+                  {service.title}
+                </h3>
+                <p className="text-[var(--muted)] leading-relaxed mb-4">
+                  {service.description}
+                </p>
+                <p className="text-sm text-[var(--muted)] mb-6 flex-grow">
+                  <span className="font-semibold text-[var(--text)]">Who it helps:</span>{" "}
+                  {service.whoItHelps}
+                </p>
+                <div className="flex flex-col gap-3 mt-auto">
+                  <Link
+                    href={service.href}
+                    className="text-[var(--brand)] font-medium hover:underline"
+                  >
+                    {service.linkText} &rarr;
+                  </Link>
+                  <Link
+                    href="/schedule"
+                    className="inline-block text-center bg-[var(--brand)] text-white px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity"
+                  >
+                    Schedule Consultation
+                  </Link>
+                </div>
+              </article>
             ))}
           </div>
         </div>
