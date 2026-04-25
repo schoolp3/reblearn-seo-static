@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 
 interface NavItem {
   label: string;
@@ -18,15 +19,51 @@ interface MobileNavProps {
 export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
     <>
-      <div className="mobile-nav-overlay" onClick={onClose} />
-      <div className="mobile-nav-drawer">
-        <div className="mobile-nav-header">
-          <span className="mobile-nav-logo">RebLearn</span>
-          <button className="mobile-nav-close" onClick={onClose} aria-label="Close menu">
+      {/* Overlay */}
+      <div
+        className="fixed inset-0 bg-black/40 z-[998] backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Drawer */}
+      <div className="fixed top-0 right-0 bottom-0 w-[min(320px,85vw)] bg-white z-[999] flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.15)]">
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
+          <Link
+            href="/"
+            onClick={onClose}
+            className="flex items-center gap-2 text-xl font-bold text-[var(--text)] no-underline"
+          >
+            <Image
+              src="/images/reblearn-logo.png"
+              alt="RebLearn"
+              width={32}
+              height={32}
+              className="w-8 h-8"
+            />
+            RebLearn
+          </Link>
+          <button
+            className="bg-transparent border-0 p-2 cursor-pointer text-[var(--text)] -mr-2"
+            onClick={onClose}
+            aria-label="Close menu"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M18 6L6 18M6 6L18 18"
@@ -38,13 +75,14 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
           </button>
         </div>
 
-        <nav className="mobile-nav-links">
+        {/* Navigation Links */}
+        <nav className="flex-1 overflow-y-auto py-3">
           {items.map((item) => (
             <div key={item.label}>
               {item.children ? (
                 <>
                   <button
-                    className="mobile-nav-link mobile-nav-expandable"
+                    className="flex items-center justify-between w-full px-5 py-4 text-base font-medium text-[var(--text)] bg-transparent border-0 text-left cursor-pointer hover:bg-[var(--card)] active:bg-[var(--card)] transition-colors"
                     onClick={() =>
                       setExpandedItem(expandedItem === item.label ? null : item.label)
                     }
@@ -55,10 +93,7 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
                       height="16"
                       viewBox="0 0 16 16"
                       fill="none"
-                      style={{
-                        transform: expandedItem === item.label ? "rotate(180deg)" : "none",
-                        transition: "transform 0.2s",
-                      }}
+                      className={`transition-transform ${expandedItem === item.label ? "rotate-180" : ""}`}
                     >
                       <path
                         d="M4 6L8 10L12 6"
@@ -69,15 +104,19 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
                     </svg>
                   </button>
                   {expandedItem === item.label && (
-                    <div className="mobile-nav-submenu">
-                      <Link href={item.href} className="mobile-nav-sublink" onClick={onClose}>
+                    <div className="bg-[var(--card)] py-2">
+                      <Link
+                        href={item.href}
+                        className="block px-5 py-3 pl-8 text-[15px] text-[var(--muted)] no-underline hover:text-[var(--text)] active:bg-white/50"
+                        onClick={onClose}
+                      >
                         All Services
                       </Link>
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="mobile-nav-sublink"
+                          className="block px-5 py-3 pl-8 text-[15px] text-[var(--muted)] no-underline hover:text-[var(--text)] active:bg-white/50"
                           onClick={onClose}
                         >
                           {child.label}
@@ -87,7 +126,11 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
                   )}
                 </>
               ) : (
-                <Link href={item.href} className="mobile-nav-link" onClick={onClose}>
+                <Link
+                  href={item.href}
+                  className="block px-5 py-4 text-base font-medium text-[var(--text)] no-underline hover:bg-[var(--card)] active:bg-[var(--card)] transition-colors"
+                  onClick={onClose}
+                >
                   {item.label}
                 </Link>
               )}
@@ -95,111 +138,45 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
           ))}
         </nav>
 
-        <div className="mobile-nav-footer">
-          <Link href="/schedule" className="btn primary mobile-nav-cta" onClick={onClose}>
-            Schedule Consultation
+        {/* Footer with CTAs */}
+        <div className="p-5 border-t border-[var(--border)] space-y-4">
+          <Link
+            href="/schedule"
+            className="btn primary w-full justify-center text-base py-3.5 font-semibold"
+            onClick={onClose}
+          >
+            Book a Consultation
           </Link>
-          <div className="mobile-nav-contact">
-            <a href="tel:+16692486602">669-248-6602</a>
-            <span> · </span>
-            <a href="mailto:dennis@reblearn.com">dennis@reblearn.com</a>
+
+          <div className="flex flex-col gap-2.5">
+            <a
+              href="tel:+16692486602"
+              className="flex items-center gap-2.5 px-4 py-3 bg-[var(--card)] rounded-lg text-[15px] font-medium text-[var(--text)] no-underline hover:bg-[var(--border)] transition-colors"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[var(--accent)]">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Call or Text: 669-248-6602
+            </a>
+            <a
+              href="mailto:dennis@reblearn.com"
+              className="flex items-center gap-2.5 px-4 py-3 bg-[var(--card)] rounded-lg text-[15px] font-medium text-[var(--text)] no-underline hover:bg-[var(--border)] transition-colors"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[var(--accent)]">
+                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
+                <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              dennis@reblearn.com
+            </a>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .mobile-nav-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.4);
-          z-index: 998;
-        }
-        .mobile-nav-drawer {
-          position: fixed;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          width: min(320px, 85vw);
-          background: #fff;
-          z-index: 999;
-          display: flex;
-          flex-direction: column;
-          box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
-        }
-        .mobile-nav-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 16px 20px;
-          border-bottom: 1px solid var(--border);
-        }
-        .mobile-nav-logo {
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--text);
-        }
-        .mobile-nav-close {
-          background: none;
-          border: none;
-          padding: 8px;
-          cursor: pointer;
-          color: var(--text);
-        }
-        .mobile-nav-links {
-          flex: 1;
-          overflow-y: auto;
-          padding: 16px 0;
-        }
-        .mobile-nav-link {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          padding: 14px 20px;
-          font-size: 16px;
-          font-weight: 500;
-          color: var(--text);
-          text-decoration: none;
-          background: none;
-          border: none;
-          text-align: left;
-          cursor: pointer;
-        }
-        .mobile-nav-link:hover {
-          background: var(--card);
-        }
-        .mobile-nav-submenu {
-          background: var(--card);
-          padding: 8px 0;
-        }
-        .mobile-nav-sublink {
-          display: block;
-          padding: 12px 20px 12px 36px;
-          font-size: 15px;
-          color: var(--muted);
-          text-decoration: none;
-        }
-        .mobile-nav-sublink:hover {
-          color: var(--text);
-        }
-        .mobile-nav-footer {
-          padding: 20px;
-          border-top: 1px solid var(--border);
-        }
-        .mobile-nav-cta {
-          width: 100%;
-          justify-content: center;
-          margin-bottom: 12px;
-        }
-        .mobile-nav-contact {
-          font-size: 13px;
-          color: var(--muted);
-          text-align: center;
-        }
-        .mobile-nav-contact a {
-          color: var(--muted);
-        }
-      `}</style>
     </>
   );
 }

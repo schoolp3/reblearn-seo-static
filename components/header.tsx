@@ -13,10 +13,10 @@ const navItems = [
     href: "/services",
     children: [
       { label: "Psychoeducational Evaluations", href: "/services/psychoeducational-evaluations" },
-      { label: "Independent Educational Evaluations (IEE)", href: "/services/iee" },
+      { label: "Independent Educational Evaluations", href: "/services/iee" },
       { label: "Learning Therapy", href: "/services/learning-therapy" },
-      { label: "Testing Accommodations", href: "/services/testing-accommodations" },
       { label: "District Contracting", href: "/services/district-contracting" },
+      { label: "Testing for Accommodations", href: "/services/testing-accommodations" },
     ],
   },
   { label: "Blog", href: "/blog" },
@@ -30,19 +30,21 @@ export function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[var(--border)]">
-        <div className="max-w-[1100px] mx-auto px-5 py-3.5 flex items-center justify-between gap-6">
-          <Link href="/" className="flex items-center gap-2 text-[22px] font-bold text-[var(--text)] no-underline hover:no-underline">
+        <div className="max-w-[1100px] mx-auto px-5 py-3 flex items-center justify-between gap-4">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 text-[22px] font-bold text-[var(--text)] no-underline hover:no-underline shrink-0">
             <Image
               src="/images/reblearn-logo.png"
               alt="RebLearn"
-              width={36}
-              height={36}
-              className="w-9 h-9"
+              width={40}
+              height={40}
+              className="w-10 h-10"
             />
-            RebLearn
+            <span className="hidden sm:inline">RebLearn</span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-2">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) =>
               item.children ? (
                 <div
@@ -53,7 +55,7 @@ export function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="flex items-center px-3.5 py-2 text-[15px] font-medium text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
+                    className="flex items-center px-3 py-2 text-[15px] font-medium text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
                   >
                     {item.label}
                     <svg
@@ -61,7 +63,7 @@ export function Header() {
                       height="12"
                       viewBox="0 0 12 12"
                       fill="none"
-                      className="ml-1"
+                      className={`ml-1 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
                     >
                       <path
                         d="M3 4.5L6 7.5L9 4.5"
@@ -73,7 +75,7 @@ export function Header() {
                     </svg>
                   </Link>
                   {servicesOpen && (
-                    <div className="absolute top-full left-0 min-w-[280px] p-2 bg-white border border-[var(--border)] rounded-xl shadow-lg">
+                    <div className="absolute top-full left-0 min-w-[280px] p-2 bg-white border border-[var(--border)] rounded-xl shadow-lg mt-0.5">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
@@ -90,7 +92,7 @@ export function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="px-3.5 py-2 text-[15px] font-medium text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
+                  className="px-3 py-2 text-[15px] font-medium text-[var(--text)] no-underline rounded-lg transition-colors hover:bg-[var(--card)] hover:no-underline"
                 >
                   {item.label}
                 </Link>
@@ -98,14 +100,22 @@ export function Header() {
             )}
           </nav>
 
-          <div className="hidden lg:flex items-center">
-            <Link href="/schedule" className="btn primary text-sm px-4 py-2.5">
-              Schedule Consultation
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="tel:+16692486602"
+              className="text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors no-underline"
+            >
+              669-248-6602
+            </a>
+            <Link href="/schedule" className="btn primary text-sm px-5 py-2.5 font-semibold">
+              Book a Consultation
             </Link>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden bg-transparent border-0 p-2 cursor-pointer text-[var(--text)]"
+            className="lg:hidden bg-transparent border-0 p-2.5 cursor-pointer text-[var(--text)] -mr-2"
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
