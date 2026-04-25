@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/cta-section";
-import { getBlogPost, getAllBlogPosts } from "@/lib/blog-data";
+import { getBlogPost, getAllBlogPosts } from "@/lib/blog-posts";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: post.title,
-    description: post.excerpt,
+    description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
   };
 }
@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <span>{post.readTime}</span>
             </div>
             <h1 className="text-[clamp(28px,4vw,40px)] leading-tight mb-4">{post.title}</h1>
-            <p className="text-lg text-[var(--muted)] leading-relaxed">{post.excerpt}</p>
+            <p className="text-lg text-[var(--muted)] leading-relaxed">{post.description}</p>
           </div>
         </header>
 
@@ -147,15 +147,15 @@ export default async function BlogPostPage({ params }: PageProps) {
       </article>
 
       <CTASection
-        headline="Have questions about your child's learning?"
-        subtext="Schedule a consultation to discuss your concerns and determine whether an evaluation would be helpful."
+        headline="Need help understanding your child's learning profile?"
+        subtext="Contact RebLearn to schedule a consultation and discuss whether an evaluation would be helpful."
         primaryButton={{
-          text: "Schedule Consultation",
-          href: "/schedule",
+          text: "Contact RebLearn",
+          href: "/contact",
         }}
         secondaryButton={{
-          text: "View Services",
-          href: "/services",
+          text: "Schedule Consultation",
+          href: "/schedule",
         }}
       />
     </>

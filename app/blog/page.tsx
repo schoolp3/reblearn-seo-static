@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import { BlogCard } from "@/components/blog-card";
 import { CTASection } from "@/components/cta-section";
-import { getAllBlogPosts } from "@/lib/blog-data";
+import { getAllBlogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -30,7 +30,7 @@ export default function BlogPage() {
               <BlogCard
                 key={post.slug}
                 title={post.title}
-                excerpt={post.excerpt}
+                excerpt={post.description}
                 slug={post.slug}
                 date={post.date}
                 category={post.category}
