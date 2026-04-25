@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
-import Script from "next/script";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import Script from "next/script"
 
-import { AiChatWidget } from "@/components/ai-chat-widget";
+import { AiChatWidget } from "@/components/ai-chat-widget"
 
-import "./globals.css";
+import "./globals.css"
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 const site = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.reblearn.com"
-).replace(/\/$/, "");
+).replace(/\/$/, "")
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
@@ -24,32 +27,20 @@ export const metadata: Metadata = {
     url: site,
   },
   twitter: { card: "summary" },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>
+    <html lang="en" className={`${inter.variable} bg-background`}>
+      <body className="font-sans antialiased">
         <Script src="/ga-events.js" strategy="afterInteractive" />
         {children}
         <AiChatWidget />
       </body>
     </html>
-  );
+  )
 }
