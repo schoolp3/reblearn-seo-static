@@ -27,7 +27,7 @@ export default function AboutPage() {
             <div className="flex justify-center md:justify-start">
               <div className="w-[240px] h-[280px] rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/dennis-saller.jpg"
+                  src="/images/dennis-saller-headshot.jpg"
                   alt="Dennis Saller, Licensed Educational Psychologist"
                   width={240}
                   height={280}

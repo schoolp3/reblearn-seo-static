@@ -124,6 +124,37 @@ export default function HomePage() {
         ]}
       />
 
+      <section className="py-16 bg-[var(--card)] border-t border-b border-[var(--border)]">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-4">Understanding Your Child&apos;s Learning</h2>
+              <p className="text-base text-[var(--muted)] leading-relaxed mb-4">
+                When a student struggles in school, families need more than vague labels or generic advice. 
+                They need to understand <em>why</em> the struggle is happening and <em>what to do about it</em>.
+              </p>
+              <p className="text-base text-[var(--muted)] leading-relaxed mb-6">
+                RebLearn provides thorough psychoeducational evaluations that identify the real issues—whether 
+                it&apos;s dyslexia, ADHD, executive functioning challenges, or something else—and connects those 
+                findings to practical next steps.
+              </p>
+              <Link href="/services" className="btn primary">
+                View All Services
+              </Link>
+            </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/hero-learning-support.jpg"
+                alt="Parent and child working together on learning materials"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16">
         <div className="max-w-[1100px] mx-auto px-5">
           <h2 className="text-3xl font-bold mb-3">Services</h2>
@@ -152,7 +183,7 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="w-32 h-32 rounded-full overflow-hidden border-3 border-white shadow-lg flex-shrink-0 mx-auto md:mx-0">
               <Image
-                src="/images/dennis-saller.jpg"
+                src="/images/dennis-saller-headshot.jpg"
                 alt="Dennis Saller, Licensed Educational Psychologist"
                 width={128}
                 height={128}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { CTASection } from "@/components/cta-section";
@@ -45,6 +46,17 @@ export default function DistrictContractingPage() {
           </>
         }
       >
+        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-lg mb-8">
+          <Image
+            src="/images/district-professional.jpg"
+            alt="Educational psychologist reviewing assessment materials in a school setting"
+            fill
+            sizes="(max-width: 768px) 100vw, 700px"
+            className="object-cover"
+            priority
+          />
+        </div>
+
         <h2 className="text-2xl font-bold mb-4">Evaluation Support for Districts</h2>
         <p className="text-base text-[var(--muted)] leading-relaxed mb-4">
           School districts sometimes need additional psychoeducational evaluation capacity. Whether you&apos;re facing a temporary staffing shortage, a backlog of cases, or need specialized assessment support, RebLearn can help.

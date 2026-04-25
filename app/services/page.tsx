@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { CTASection } from "@/components/cta-section";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Services for Families, Students, and School Districts",
@@ -112,6 +113,33 @@ export default function ServicesPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg order-2 lg:order-1">
+              <Image
+                src="/images/evaluation-report.jpg"
+                alt="Psychoeducational evaluation materials and assessment report on a desk"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-3xl font-bold mb-4">Clear Reports, Practical Recommendations</h2>
+              <p className="text-base text-[var(--muted)] leading-relaxed mb-4">
+                A good evaluation doesn&apos;t just label a problem—it explains what&apos;s happening and what to do about it. 
+                Our reports are written to be clear, useful, and actionable.
+              </p>
+              <p className="text-base text-[var(--muted)] leading-relaxed">
+                Whether you&apos;re seeking school services, accommodations, or outside support, 
+                you&apos;ll leave with a clear understanding of your student&apos;s learning profile and concrete next steps.
+              </p>
+            </div>
           </div>
         </div>
       </section>

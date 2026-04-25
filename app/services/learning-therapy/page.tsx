@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { FAQSection } from "@/components/faq-section";
@@ -58,6 +59,17 @@ export default function LearningTherapyPage() {
           </>
         }
       >
+        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-lg mb-8">
+          <Image
+            src="/images/learning-therapy-session.jpg"
+            alt="Learning therapy session with educator and student working on reading skills"
+            fill
+            sizes="(max-width: 768px) 100vw, 700px"
+            className="object-cover"
+            priority
+          />
+        </div>
+
         <h2 className="text-2xl font-bold mb-4">What We Mean by Learning Therapy</h2>
         <p className="text-base text-[var(--muted)] leading-relaxed mb-4">
           Learning therapy is not the same as traditional tutoring. While tutoring typically helps students keep up with current schoolwork, learning therapy targets the underlying skills that make learning difficult in the first place.
