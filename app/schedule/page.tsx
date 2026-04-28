@@ -28,10 +28,10 @@ export default function SchedulePage() {
 
         <div className="flex flex-col gap-4 max-w-[400px] mx-auto mb-12">
           <a
-            href="#"
+            href="mailto:dennis@reblearn.com?subject=Consultation%20Request"
             className="btn primary text-base py-4 px-8 rounded-xl"
           >
-            Book Online
+            Request Consultation
           </a>
           
           <a

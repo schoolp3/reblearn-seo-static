@@ -127,7 +127,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="flex flex-col sm:flex-row gap-5 items-center bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
               <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <Image
-                  src="/images/dennis-saller.jpg"
+                  src="/images/dennis-saller-headshot.jpg"
                   alt="Dennis Saller"
                   width={64}
                   height={64}

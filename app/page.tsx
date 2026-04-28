@@ -59,11 +59,11 @@ const services = [
     linkText: "District services",
   },
   {
-    title: "Specialized Assessment",
+    title: "Dyslexia, Dysgraphia, and Dyscalculia",
     description:
-      "Focused evaluation for dyslexia, dysgraphia, dyscalculia, ADHD, and executive functioning within a comprehensive assessment framework.",
-    href: "mailto:dennis@reblearn.com?subject=Specialized%20Assessment",
-    linkText: "Ask about assessment",
+      "Focused evaluation for dyslexia, dysgraphia, dyscalculia, and other specific learning disabilities within a comprehensive assessment framework.",
+    href: "/services/psychoeducational-evaluations",
+    linkText: "Learn about evaluations",
   },
 ];
 
