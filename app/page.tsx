@@ -1,4 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
+import { Hero } from "@/components/hero";
+import { ServiceCard } from "@/components/service-card";
+import { CTASection } from "@/components/cta-section";
+import { FAQSection } from "@/components/faq-section";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -9,13 +14,86 @@ const jsonLd = {
   telephone: "+1-669-248-6602",
   areaServed: "California",
   description:
-    "Psychoeducational evaluations for dyslexia, ADHD, IEP/504 supports, and Independent Educational Evaluations (IEEs).",
+    "Psychoeducational evaluations, learning therapy, and Independent Educational Evaluations (IEEs) for families and schools in California.",
   provider: {
     "@type": "Person",
     name: "Dennis Saller",
     jobTitle: "Licensed Educational Psychologist (LEP #3219)",
   },
 };
+
+const services = [
+  {
+    title: "Psychoeducational Evaluations",
+    description:
+      "Comprehensive evaluations to understand learning, attention, and academic difficulties. Clear findings and practical recommendations for next steps.",
+    href: "/services/psychoeducational-evaluations",
+    linkText: "Learn about evaluations",
+  },
+  {
+    title: "Independent Educational Evaluations (IEE)",
+    description:
+      "Thorough, experienced outside evaluations for families seeking an independent perspective on their child's educational needs.",
+    href: "/services/iee",
+    linkText: "IEE overview",
+  },
+  {
+    title: "Learning Therapy",
+    description:
+      "Targeted support for reading, writing, spelling, and executive functioning based on evaluation findings and research-based methods.",
+    href: "/services/learning-therapy",
+    linkText: "Explore learning therapy",
+  },
+  {
+    title: "Testing Accommodations",
+    description:
+      "Documentation for SAT, ACT, GRE, MCAT, Bar exam, and professional licensing accommodations with thorough evaluation support.",
+    href: "/services/testing-accommodations",
+    linkText: "Learn about accommodations",
+  },
+  {
+    title: "District Contracting",
+    description:
+      "Experienced psychoeducational evaluation services for school districts needing reliable assessment capacity and timely case completion.",
+    href: "/services/district-contracting",
+    linkText: "District services",
+  },
+  {
+    title: "Dyslexia, Dysgraphia, and Dyscalculia",
+    description:
+      "Focused evaluation for dyslexia, dysgraphia, dyscalculia, and other specific learning disabilities within a comprehensive assessment framework.",
+    href: "/services/psychoeducational-evaluations",
+    linkText: "Learn about evaluations",
+  },
+];
+
+const faqs = [
+  {
+    question: "What kinds of learning difficulties do you evaluate?",
+    answer:
+      "We evaluate a wide range of learning differences including dyslexia, dysgraphia, dyscalculia, ADHD, executive functioning challenges, reading and writing difficulties, and other factors affecting school performance. Each evaluation is tailored to answer the specific questions families and schools need addressed.",
+  },
+  {
+    question: "How is a psychoeducational evaluation different from school testing?",
+    answer:
+      "A private psychoeducational evaluation typically provides a more comprehensive picture of a student's cognitive, academic, and processing abilities. While school evaluations focus on eligibility for services, private evaluations can explore questions in greater depth and provide detailed recommendations for intervention and support.",
+  },
+  {
+    question: "What is an Independent Educational Evaluation (IEE)?",
+    answer:
+      "An IEE is an evaluation conducted by a qualified professional outside the school district. Parents may request an IEE when they disagree with the school's evaluation. In appropriate situations, the district may fund the evaluation.",
+  },
+  {
+    question: "How long does the evaluation process take?",
+    answer:
+      "Most evaluations are completed within 2-4 weeks from intake to final report. Testing sessions typically span 1-2 visits depending on the scope of the evaluation. We prioritize timely completion while ensuring thorough assessment.",
+  },
+  {
+    question: "Do you work with adults seeking testing accommodations?",
+    answer:
+      "Yes. We provide evaluations for adults seeking documentation for standardized tests (SAT, GRE, MCAT, LSAT), professional licensing exams (Bar, medical boards), and college or graduate school accommodations.",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -24,199 +102,132 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header className="hero">
-        <div className="container">
-          <div className="kicker">
-            Dennis Saller, LEP #3219 • Licensed Educational Psychologist
-          </div>
-          <h1>
-            Psychoeducational Evaluations, IEEs, and District
-            Contracting—Available Now
-          </h1>
-          <p className="subhead">
-            Serving school districts and families with experienced
-            psychoeducational evaluations, timely scheduling, and clear,
-            research-based recommendations.
-          </p>
-          <div className="ctaRow">
-            <a
-              className="btn primary"
-              href="mailto:dennis@reblearn.com?subject=Consultation%20Request"
-            >
-              Book a Consultation
-            </a>
-            <Link className="btn secondary" href="/services">
-              Explore Services
-            </Link>
-          </div>
-          <div className="hero-contact">
-            Questions first?
-            <br />
-            Call or text{" "}
-            <a className="phone" href="tel:+16692486602">
-              669-248-6602
-            </a>
-          </div>
-          <div className="trust">
-            <span className="pill">Immediate Availability</span>
-            <span className="pill">IEEs &amp; District Contracting</span>
-            <span className="pill">26+ Years Experience</span>
+
+      <Hero
+        kicker="Dennis Saller, LEP #3219 · Licensed Educational Psychologist"
+        title="Understand why your student is struggling—and what to do next."
+        subtitle="Psychoeducational evaluations, Independent Educational Evaluations (IEEs), and learning therapy for California families and schools. Clear findings, research-based recommendations, and practical next steps."
+        primaryCta={{
+          text: "Schedule a Consultation",
+          href: "/schedule",
+        }}
+        secondaryCta={{
+          text: "Explore Services",
+          href: "/services",
+        }}
+        showContact
+        trustBadges={[
+          "Immediate Availability",
+          "26+ Years Experience",
+          "1,000+ Evaluations",
+          "California Statewide",
+        ]}
+      />
+
+      <section className="py-16 bg-[var(--card)] border-t border-b border-[var(--border)]">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-4">Understanding Your Child&apos;s Learning</h2>
+              <p className="text-base text-[var(--muted)] leading-relaxed mb-4">
+                When a student struggles in school, families need more than vague labels or generic advice. 
+                They need to understand <em>why</em> the struggle is happening and <em>what to do about it</em>.
+              </p>
+              <p className="text-base text-[var(--muted)] leading-relaxed mb-6">
+                RebLearn provides thorough psychoeducational evaluations that identify the real issues—whether 
+                it&apos;s dyslexia, ADHD, executive functioning challenges, or something else—and connects those 
+                findings to practical next steps.
+              </p>
+              <Link href="/services" className="btn primary">
+                View All Services
+              </Link>
+            </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/hero-learning-support.jpg"
+                alt="Parent and child working together on learning materials"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
-      </header>
-      <main className="container">
-        <section className="section">
-          <h2>Services and specialties</h2>
-          <div className="grid">
-            <div className="card">
-              <h3>Psychoeducational Evaluations</h3>
-              <p>
-                Comprehensive evaluations to identify learning, attention,
-                academic, and other school-related difficulties and provide
-                clear recommendations for next steps.
-              </p>
-              <p>
-                <Link data-cta-type="service" href="/psychoeducational-evaluation">
-                  Learn about evaluations →
-                </Link>
-              </p>
-            </div>
-            <div className="card">
-              <h3>IEE / Independent Evaluations</h3>
-              <p>
-                Independent Educational Evaluations for families seeking a
-                thorough, experienced, and clearly written outside evaluation.
-              </p>
-              <p>
-                <a
-                  data-cta-type="service"
-                  href="mailto:dennis@reblearn.com?subject=IEE%20Inquiry"
-                >
-                  IEE inquiry →
-                </a>
-              </p>
-            </div>
-            <div className="card">
-              <h3>District Contracting</h3>
-              <p>
-                Psychoeducational evaluation support for school districts
-                needing experienced, reliable assessment services and timely
-                case completion.
-              </p>
-              <p>
-                <a
-                  data-cta-type="service"
-                  href="mailto:dennis@reblearn.com?subject=District%20Contracting"
-                >
-                  Discuss contracting →
-                </a>
-              </p>
-            </div>
-            <div className="card">
-              <h3>Testing for Accommodations</h3>
-              <p>
-                Evaluations for students and adults seeking documentation for
-                accommodations on standardized, professional, or licensing
-                exams.
-              </p>
-              <p>
-                <a
-                  data-cta-type="service"
-                  href="mailto:dennis@reblearn.com?subject=Accommodations%20Testing"
-                >
-                  Ask about accommodations →
-                </a>
-              </p>
-            </div>
-            <div className="card">
-              <h3>Targeted Learning Support</h3>
-              <p>
-                Focused support informed by evaluation findings to address
-                specific learning, writing, reading, attention, and academic
-                weaknesses.
-              </p>
-              <p>
-                <a
-                  data-cta-type="service"
-                  href="mailto:dennis@reblearn.com?subject=Targeted%20Learning%20Support"
-                >
-                  Discuss targeted support →
-                </a>
-              </p>
-            </div>
-            <div className="card">
-              <h3>Specialized Assessment</h3>
-              <p>
-                Assessment for dyslexia, dysgraphia, ADHD, executive
-                functioning, and related learning difficulties as part of a
-                broader evaluation picture.
-              </p>
-              <p>
-                <a
-                  data-cta-type="service"
-                  href="mailto:dennis@reblearn.com?subject=Specialized%20Assessment"
-                >
-                  Ask about assessment →
-                </a>
-              </p>
-            </div>
-          </div>
-        </section>
+      </section>
 
-        <section className="strip">
-          <div className="strip-header">
-            <div className="headshot" aria-hidden />
-            <div>
-              <h2>Meet Dennis Saller, LEP</h2>
-              <p className="small">
-                Dennis Saller is a California Licensed Educational Psychologist
-                with over 26 years of experience conducting psychoeducational
-                evaluations for students with learning, attention, reading,
-                writing, and other school-related difficulties. Through
-                RebLearn, he provides clear evaluation, practical
-                recommendations, and experienced support for families and
-                school districts.
+      <section className="py-16">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <h2 className="text-3xl font-bold mb-3">Services</h2>
+          <p className="text-base text-[var(--muted)] max-w-[640px] leading-relaxed mb-8">
+            Evaluation-focused support for families, schools, and districts. Whether you need
+            answers about learning difficulties, accommodations documentation, or district
+            assessment capacity, we can help.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service) => (
+              <ServiceCard
+                key={service.title}
+                title={service.title}
+                description={service.description}
+                href={service.href}
+                linkText={service.linkText}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--card)] border-t border-b border-[var(--border)] py-12">
+        <div className="max-w-[1100px] mx-auto px-5">
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="w-32 h-32 rounded-full overflow-hidden border-3 border-white shadow-lg flex-shrink-0 mx-auto md:mx-0">
+              <Image
+                src="/images/dennis-saller-headshot.jpg"
+                alt="Dennis Saller, Licensed Educational Psychologist"
+                width={128}
+                height={128}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl font-bold mb-4">Meet Dennis Saller, LEP</h2>
+              <p className="text-[15px] text-[var(--muted)] leading-relaxed mb-3">
+                Dennis Saller is a California Licensed Educational Psychologist with over 26 years
+                of experience conducting psychoeducational evaluations. He has completed more than
+                1,000 evaluations for students with learning differences, attention difficulties,
+                reading and writing challenges, and other school-related concerns.
               </p>
-              <div className="ctaRow">
-                <Link className="btn secondary" href="/about">
+              <p className="text-[15px] text-[var(--muted)] leading-relaxed mb-5">
+                Through RebLearn, Dennis helps families understand what is happening with their
+                child&apos;s learning and provides clear, practical recommendations—not vague labels or
+                generic guidance.
+              </p>
+              <div className="flex justify-center md:justify-start">
+                <Link href="/about" className="btn secondary">
                   About Dennis
                 </Link>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="strip" data-section-name="Contact">
-          <h2>Contact Dennis</h2>
-          <p className="small">
-            Fast response for consultation requests, IEE questions, and
-            district partnerships.
-          </p>
-          <div className="ctaRow">
-            <a
-              className="btn primary"
-              href="mailto:dennis@reblearn.com?subject=Consultation%20Request"
-            >
-              Book a Consultation
-            </a>
-            <a className="btn secondary" href="tel:+16692486602">
-              Call/Text: 669‑248‑6602
-            </a>
-          </div>
-          <div className="contact-grid">
-            <div className="contact-item">
-              Email:{" "}
-              <a href="mailto:dennis@reblearn.com">dennis@reblearn.com</a>
-            </div>
-            <div className="contact-item">
-              Phone/Text:{" "}
-              <a href="tel:+16692486602">669‑248‑6602</a>
-            </div>
-          </div>
-        </section>
+      <CTASection
+        headline="Ready to get answers?"
+        subtext="Schedule a consultation to discuss your situation. We'll help you understand whether an evaluation makes sense and what to expect."
+        primaryButton={{
+          text: "Schedule Consultation",
+          href: "/schedule",
+        }}
+        secondaryButton={{
+          text: "Call 669-248-6602",
+          href: "tel:+16692486602",
+        }}
+        variant="dark"
+      />
 
-        <footer className="footer">© 2026 RebLearn.</footer>
-      </main>
+      <FAQSection items={faqs} />
     </>
   );
 }

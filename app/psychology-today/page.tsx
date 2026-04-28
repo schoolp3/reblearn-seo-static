@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Psychology Today | RebLearn",
+  title: "Psychology Today",
   description: "Find Dennis Saller, LEP on Psychology Today.",
   alternates: { canonical: "/psychology-today" },
 };
@@ -13,20 +13,24 @@ export default function PsychologyTodayPage() {
   if (url) redirect(url);
 
   return (
-    <main className="container">
-      <header className="header" style={{ margin: "-28px -18px 24px" }}>
-        <div className="container">
-          <div className="kicker">RebLearn</div>
-          <h1>Psychology Today</h1>
-        </div>
-      </header>
-      <p className="small">
-        A public profile link is not configured yet. Set{" "}
-        <code>NEXT_PUBLIC_PSYCHOLOGY_TODAY_URL</code> in your environment, or
-        reach Dennis via the{" "}
-        <Link href="/contact">contact page</Link>.
-      </p>
-      <footer className="footer">© 2026 RebLearn.</footer>
-    </main>
+    <section className="py-20 md:py-28">
+      <div className="max-w-[600px] mx-auto px-5 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-6">Psychology Today</h1>
+        <p className="text-base text-[var(--muted)] leading-relaxed mb-8">
+          A Psychology Today profile link is not configured yet. Please reach Dennis via the{" "}
+          <Link href="/contact" className="text-[var(--brand)] hover:underline">
+            contact page
+          </Link>{" "}
+          or call{" "}
+          <a href="tel:+16692486602" className="text-[var(--brand)] hover:underline">
+            669-248-6602
+          </a>
+          .
+        </p>
+        <Link href="/contact" className="btn primary">
+          Contact RebLearn
+        </Link>
+      </div>
+    </section>
   );
 }

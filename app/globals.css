@@ -16,12 +16,8 @@ body {
 }
 body {
   font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
     Helvetica,
+    "Helvetica Neue",
     Arial,
     sans-serif;
   color: var(--text);
@@ -64,7 +60,7 @@ a:hover {
 }
 h1,
 h2 {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
 }
 h1 {
@@ -235,14 +231,36 @@ p {
 }
 
 @media (max-width: 720px) {
+  .container {
+    padding: 20px 16px;
+  }
   .hero-contact {
     font-size: 18px;
   }
   h1 {
-    font-size: 34px;
+    font-size: 32px;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .subhead {
+    font-size: 16px;
   }
   .card {
     grid-column: span 12;
+  }
+  .btn {
+    padding: 14px 18px;
+    font-size: 15px;
+    min-height: 48px;
+  }
+  .ctaRow {
+    gap: 10px;
+  }
+  .strip-header {
+    flex-direction: column;
+    text-align: center;
   }
 }
 

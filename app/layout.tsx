@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
-import { AiChatWidget } from "@/components/ai-chat-widget";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 import "./globals.css";
 
@@ -11,19 +12,28 @@ const site = (
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
-  title: "Psychoeducational Evaluations in California | Dennis Saller, LEP",
+  title: {
+    default: "RebLearn | Psychoeducational Evaluations, IEEs, and Learning Support",
+    template: "%s | RebLearn",
+  },
   description:
-    "Psychoeducational evaluations for dyslexia, dysgraphia, and ADHD. IEEs and district contracting with Dennis Saller, LEP #3219, serving California and the Bay Area.",
+    "RebLearn provides psychoeducational evaluations, Independent Educational Evaluations, learning therapy, and district contracting services for families and schools in California.",
   alternates: { canonical: "/" },
   openGraph: {
-    title:
-      "Psychoeducational Evaluations in California | Dennis Saller, LEP",
+    title: "RebLearn | Psychoeducational Evaluations and Learning Support",
     description:
-      "Psychoeducational evaluations for dyslexia, dysgraphia, and ADHD. IEEs and district contracting with Dennis Saller, LEP #3219, serving California and the Bay Area.",
+      "RebLearn provides psychoeducational evaluations, Independent Educational Evaluations, learning therapy, and district contracting services for families and schools in California.",
     type: "website",
     url: site,
+    siteName: "RebLearn",
+    locale: "en_US",
   },
-  twitter: { card: "summary" },
+  twitter: {
+    card: "summary",
+    title: "RebLearn | Psychoeducational Evaluations and Learning Support",
+    description:
+      "Psychoeducational evaluations, IEEs, and learning therapy for California families and schools.",
+  },
 };
 
 export default function RootLayout({
@@ -32,23 +42,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className="bg-[var(--bg)]">
       <body>
         <Script src="/ga-events.js" strategy="afterInteractive" />
-        {children}
-        <AiChatWidget />
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
