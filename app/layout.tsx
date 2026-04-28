@@ -3,7 +3,6 @@ import Script from "next/script";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { AiChatWidget } from "@/components/ai-chat-widget";
 
 import "./globals.css";
 
@@ -43,13 +42,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-white">
+    <html lang="en" className="bg-[var(--bg)]">
       <body>
         <Script src="/ga-events.js" strategy="afterInteractive" />
         <Header />
         <main>{children}</main>
         <Footer />
-        <AiChatWidget />
       </body>
     </html>
   );
